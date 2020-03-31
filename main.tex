@@ -1,4 +1,4 @@
-\documentclass[letterpaper,twocolumn,10pt]{article}
+ here\documentclass[letterpaper,twocolumn,10pt]{article}
 \usepackage{epsfig,xspace,url,authblk}
 
 
@@ -20,19 +20,56 @@ Put the introduction here. Write about where the paper came from, why it is impo
 
 \subsection*{Summary}
 
-Put summary here. This should be the main section of the review.
+- Purpose of project: 
+    - Create sensor network for irrigation and environmental sensing (especially for smart farming applications)
+    - Sensor mobility significantly reduces overhead of manual sensor deployment
+    - Explore idea of creating mobile wireless sensors using insects
+- Why bees?
+    - Use bees because mechanical drones don't have extended flight times due to lack of power (only last 5-30 min on single charge). 
+    - Bees chemical reaction for energy is highly efficient and able to fly for extended periods of time.
+    - Bees already common, many farms already buy and depend on bees to pollinate their crops
+    - Bees can provide mobility for free
+- What constraints does the system have to work under?
+    - Small size and weight needed for bee to be able to carry it
+    - Small size means VERY limited power
+- How does the platform work?
+    - Platform is called Living IoT
+    - Backscattering sensor data - size, weight, and power requirements can only support very low processing and data rates
+        - Common very low power method of sending data at lower rate
+    - Sensor uses rf signals to localize themselves in 2D space
+    - 900 MHz range has slower data rate than for example WiFi but offers longer range and uses less power
+    - Envelope detector for self-localization
+    - low-weight, low-power, small form-factor sensors (temperature, humidity, light)
+    - Energy harvesting antenna to recharge battery overnight (when bees are in hive)
+- Evaluation of system (How well does it work? What issues can there be?)
+    - Multiple tests used to evaluate self-localization. Stationary and mobile tests
+        - tests in soccer field (b/c flat and open). Localization worked up to 80m away.
+        - tests in farm deployment
+        - moving tests 
+
 
 \subsection*{Strengths}
 
-Put strengths here.
+- Well-defined problem statement
+    - Described their use case really well, and why what they were doing was useful
 
 \subsection*{Weaknesses}
 
-Put weaknesses here.
+- But what about the bees?
+    - How much does this decrease the overall health and lifespan of the bee?
+- 
+- What was the cost in manual labor to deploy this?
 
 \subsection*{Future Work}
 
-Put future work here. Write about how this work could be extended into future research.
+- Increase backscatter range
+- Controling insect flight
+- Mass fabrication
+- Camera sensing
+- E-waste
+- IACUC requirements and how they would apply to insects
+- Developing drones simulating insect flight
+- Solar powered sensors
 
 \subsection*{Conclusion}
 
