@@ -1,4 +1,4 @@
- here\documentclass[letterpaper,twocolumn,10pt]{article}
+\documentclass[letterpaper,twocolumn,10pt]{article}
 \usepackage{epsfig,xspace,url,authblk}
 
 
@@ -16,65 +16,59 @@ Living IoT: A Flying Wireless Platform on Live Insects}
 
 \subsection*{Introduction}
 
-Put the introduction here. Write about where the paper came from, why it is important, etc.
+Living IoT was presented in the Mobicom 2019 conference, and has important implications for smart farming and IoT, providing a framework for which wireless networks can be literally carried on the backs of work insects, such as bees. The paper provides an approach to build and deploy a low-power, small form-factor, and wireless computing device that is attached to the abdomen of a bee for general-purpose sensing.
 
 \subsection*{Summary}
+ 
+The purpose of the Living IoT project is to explore the possibility of using tiny mobile wireless sensors, attached to insects such as bees, to create a sensor network for irrigation and environmental sensing in smart farming applications. These sensor networks are typically deployed using drones. Drones generally have flight times anywhere from 5-30 minutes before needing to be recharged. Using insects,such as bees, as an alternate method to deploy sensor networks, is an attractive solution. Bees are able to provide energy for an extended period of time using stored fats and carbohydrates. This storage of energy has a much higher energy mass-density than batteries, making bees an efficient way to provide long-term mobility for free. 
+ 
+Using bees to carry the sensor payload introduces many interesting limitations and constraints. First of all, through experimentation, it was determined that a bee is capable of carrying a payload of over 100mg, but not significantly more. Overall, the system was designed to work within a weight budget of approximately 102mg. Not only that, but size is also a significant constraint. For example, the system uses a 900MHz antenna, but even if a quarter wave antenna could fit within the weight limit, it would be significantly longer than the bee, possibly interfering with the bee's flight or entangling with plants. Thus, in order to enable wireless communication, a much shorter whip antenna with inductance at the base is used. Because of such significant size and weight constraints, the power is also significantly constrained. They fit a 1 mAh rechargeable Li-On battery into the system, which could last for about 7 hours if the average current consumption does not exceed 138uA. Most wireless networks which use a traditional radio for transmissions require significant power and weight. This deployment overcomes that obstacle by using a low power backscatter design for data communication, and a simple envelope detector for self-localization. Also, all processing is done using a super compact microcontroller with a built in ADC and 32 KB of flash memory, capable of storing up to 10 hours of measurements. In order to meet the weight requirements, the PCB had to be custom made by laser micro-machining a copper coated sheet. Even though the PCB and antennas are custom made, the sensors are all off-the-shelf parts, selected so that they fit within the weight and size constraints. In this particular deployment, the sensors were a temperature, humidity, and light sensor. In order to attach the custom PCB to the bees, individual bees are lured out with sugar water, trapped in containers, then put in a freezer for about 5 minutes. After being released, there is a small window of time in which the sensor can be glued onto the bee's abdomen.
 
-- Purpose of project: 
-    - Create sensor network for irrigation and environmental sensing (especially for smart farming applications)
-    - Sensor mobility significantly reduces overhead of manual sensor deployment
-    - Explore idea of creating mobile wireless sensors using insects
-- Why bees?
-    - Use bees because mechanical drones don't have extended flight times due to lack of power (only last 5-30 min on single charge). 
-    - Bees chemical reaction for energy is highly efficient and able to fly for extended periods of time.
-    - Bees already common, many farms already buy and depend on bees to pollinate their crops
-    - Bees can provide mobility for free
-- What constraints does the system have to work under?
-    - Small size and weight needed for bee to be able to carry it
-    - Small size means VERY limited power
-- How does the platform work?
-    - Platform is called Living IoT
-    - Backscattering sensor data - size, weight, and power requirements can only support very low processing and data rates
-        - Common very low power method of sending data at lower rate
-    - Sensor uses rf signals to localize themselves in 2D space
-    - 900 MHz range has slower data rate than for example WiFi but offers longer range and uses less power
-    - Envelope detector for self-localization
-    - low-weight, low-power, small form-factor sensors (temperature, humidity, light)
-    - Energy harvesting antenna to recharge battery overnight (when bees are in hive)
-- Evaluation of system (How well does it work? What issues can there be?)
-    - Multiple tests used to evaluate self-localization. Stationary and mobile tests
-        - tests in soccer field (b/c flat and open). Localization worked up to 80m away.
-        - tests in farm deployment
-        - moving tests 
+One of the contributions that paper makes is a method for self-localization which follows the spirit of GPS, but is much smaller and less computationally intensive. The system makes use of 2 Access Points, each with two or more antennas which are transmitting out of phase. The out of phase transmissions cause a predictable change in amplitude, which can be used to determine the angle from an Access Point. With two access points at known locations, two different angles can be calculated, and thus the 2-d position of the bee can be determined. Because bees typically don't fly very high, knowing height is not significant, but can be theoretically determined with a 3rd access point. The backscatter communication operates in the 900 MHz ISM band, which tends to have a longer range and lower power requirement than the 2.4GHz range. In order to recharge the batteries, it uses energy harvesting antennas, which allows the system to recharge in about 6 hours while the bees are in their hive at night.
 
+How well does this system perform? Multiple tests show that this Living IoT system can be effectively deployed. Tests were performed in both a soccer field and in farming applications. In both testing environments, the design was able to achieve self-localization results with resolutions of 4.6 degrees at ranges of up to 80 meters. 
+
+During these tests the system was able to last up to 7 hours using the on-board 70 mg rechargeable battery, which can be charged wirelessly back at the hive. Using backscatter communication (ON-OFF keying) the bee can transmit collected sensor information, back at the hive, using a data rate of 1 kbps. 
 
 \subsection*{Strengths}
 
-- Well-defined problem statement
-    - Described their use case really well, and why what they were doing was useful
-- Well-written introduction that clearly shows how they were able to solve the problem presented
+The paper presents a well-defined problem statement and has a very clear and concise purpose. It solves a real-world problem and is motivated by direct applications. These applications are clearly discussed in the paper. In particular, the introduction is very thourough and provides a succinct overview of the entire paper and problem setting.
+
+The authors introduce a novel and creative IoT solution. Initially it would seem like developing a full computing system with wireless and sensing capabilities on an insect would be impossible, yet the paper clearly demonstrates the viability of their IoT device. The paper has strong experimentation and empirical evidence to demonstrate the viability of their ideas and solutions. Specifically, the authors include several clear figures and charts to demonstrate the localization angular accuracy, envelope detection performance and other claims the authors make.
 
 \subsection*{Weaknesses}
 
-- But what about the bees?
-    - How much does this decrease the overall health and lifespan of the bee?
-- 
-- What was the cost in manual labor to deploy this?
-    - How much specialization or training does it require?
+In general, the authors present an intriguing and well executed idea. However there are several weaknesses and limitations.
+
+The paper lacks a thorough discussion of the impact that their methodologies had on the individual bees that carried the sensor packages and the bee population as a whole. Specifically, the authors only mention that bees can carry loads up to 100mg---which they use as a weight budget for the sensor packages---but do not elaborate any further. The authors however do not discuss the effect that carrying loads up to 100mg has on the bee's lifespan, health, foraging and flying capabilities and other typical activities.
+
+While the idea itself is very creative and useful, the authors do not discuss the relative difficulty to manufacture and deploy such a unique IoT system compared to, for example, a typical drone-based solution. The paper does not detail the training, specialization and time requirements to fit the bees with the sensor packages. Additionally, the authors do not discuss the sensor lifespan or IT issues involved with maintaining such a unique IoT fleet.
+
+Lastly, there is an intrinsic limit to the technology and types of sensors available for use in such a size constrained setting. The authors did not mention this limit, only the immediate solutions to the problems induced by such limitations.
 
 \subsection*{Future Work}
 
-- Increase backscatter range
-- Controling insect flight
-- Mass fabrication
-- Camera sensing
-- E-waste
-- IACUC requirements and how they would apply to insects
-- Developing drones simulating insect flight
-- Solar powered sensors
+While there are many ways this research could be expanded to include other areas, some of the future research relating to this project could include some of the following topics: 
+
+\begin{itemize}
+    \item Increase backscatter range
+    \item Control insect flight
+    \item Explore mass fabrication and improve/simplify deployment strategies.
+    \item Camera sensing, which could be useful in some smart farm and other applications
+    \item Handle the E-waste produced when bees die while carrying their sensor payload.
+    \item Examine how Institutional Animal Care and Use Committee (IACUC) requirements apply to insects and work to meet their requirements with the sensor packages and deployment techniques.
+    \item Develop drones simulating insect flight.
+    \item Currently the IoT package is RF powered, but the authors mention a few alternative power sources that could lead to a battery free design:
+    \begin{itemize}
+        \item Solar power could be used as long as it could meet their power output constraints
+        \item Use wing vibrations from larger insects to harness piezoelectric energy
+    \end{itemize}
+    \item Explore other use-cases for the technology such as: enabling bee and insect research using deployed sensors and other monitoring applications.
+\end{itemize}
+
 
 \subsection*{Conclusion}
 
-Put conclusion here. Write some closing thoughts and summarize the overall review of the paper.
+This paper has explored the possibility of using tiny mobile wireless sensors, attached to bees, to create a sensor network for irrigation and environmental sensing in smart farming applications. A design was presented that has been successfully tested to show that bees can indeed be used for carry these tiny sensors and the sensor data can be collected successfully. 
 
 \end{document}
